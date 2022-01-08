@@ -1,0 +1,1 @@
+## i usually use docker to start mysql db
