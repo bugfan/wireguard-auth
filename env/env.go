@@ -17,10 +17,20 @@ func init() {
 		"db_host":            "127.0.0.1:3305",
 		"db_name":            "auth",
 		"db_scheme":          "mysql",
-		"db_show_sql":        "false",
+		"db_show_sql":        "true",
 		"dhcp_default_group": "dhcp0",
 		"dhcp_default_num":   "60000",
-		"dhcp_default_ip":    "10.0.0.1",
+		"dhcp_default_ip":    "10.0.0.2",
+		"wg_private_key":     "",
+		"wg_public_key":      "",
+		"wg_address":         "10.0.0.1/16",
+		"wg_listen_port":     "51820",
+		"wg_mtu":             "1420",
+		"wg_dns":             "8.8.8.8",
+		"wg_psk":             "",
+		"wg_allow_ips":       "0.0.0.0/0,::0/0", // allow all ipv4 and ipv6 flow
+		"wg_keepalive":       "25",
+		"api_addr":           ":8080",
 	}
 }
 

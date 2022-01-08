@@ -6,6 +6,8 @@ go 1.17
 
 require (
 	github.com/bugfan/jsoniter v0.0.0-20191008095102-50a9185e85f5
+	github.com/bugfan/logrus v1.0.6
+	github.com/bugfan/srv v0.0.0-20210409074843-d2eeed3b0f76
 	github.com/bugfan/to v0.0.0-20191009012259-9ef08661c883
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/go-xorm/core v0.0.0-00010101000000-000000000000

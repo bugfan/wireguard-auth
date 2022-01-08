@@ -11,14 +11,16 @@ type Peer struct {
 	// interface
 	Address    string
 	PrivateKey string
-	ListenPort int64
+	PublicKey  string
+	ListenPort string
 	DNS        string
 	// peer
-	PublicKey  string
-	Endpoint   string
-	AllowedIPs string `xorm:"allow_ips"`
+	ServerPublicKey string
+	Endpoint        string
+	AllowedIPs      string `xorm:"allow_ips"`
 	// other
 	Additive json.RawMessage
+	Tag      string
 	Created  time.Time `xorm:"CREATED"`
 	Updated  time.Time `xorm:"UPDATED"`
 	Deleted  time.Time `xorm:"deleted"`
