@@ -20,10 +20,17 @@ func (*Auth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	*/
 }
 
-type WireguardHandler struct {
+type Config struct {
 }
 
-func (s *WireguardHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (s *Config) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
+}
+
+type Wireguard struct {
+}
+
+func (s *Wireguard) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		s.verifyAuth(w, r)
@@ -35,7 +42,7 @@ func (s *WireguardHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 	http.NotFound(w, r)
 }
-func (*WireguardHandler) verifyAuth(w http.ResponseWriter, r *http.Request) {
+func (*Wireguard) verifyAuth(w http.ResponseWriter, r *http.Request) {
 	// get
 	pubkey, err := hex.DecodeString(r.URL.Query().Get("publickey"))
 	if err != nil {
@@ -50,7 +57,7 @@ func (*WireguardHandler) verifyAuth(w http.ResponseWriter, r *http.Request) {
 	bs, _ := utils.IJSON.Marshal(data)
 	w.Write(bs)
 }
-func (*WireguardHandler) createPeer(w http.ResponseWriter, r *http.Request) {
+func (*Wireguard) createPeer(w http.ResponseWriter, r *http.Request) {
 	// post
 	name := r.URL.Query().Get("name")
 	client := peer.F.Make(name)
@@ -67,8 +74,9 @@ func (*WireguardHandler) createPeer(w http.ResponseWriter, r *http.Request) {
 func NewServer(addr string) *Server {
 
 	s := srv.New(addr)
-	s.AddHeadHandler(&Auth{})                   // set auth middleware
-	s.Handle("/wireguard", &WireguardHandler{}) // set wg handler
+	s.AddHeadHandler(&Auth{})            // set auth middleware
+	s.Handle("/wireguard", &Wireguard{}) // set wg handler
+	s.Handle("/config", &Config{})
 	return &Server{
 		addr,
 		s,

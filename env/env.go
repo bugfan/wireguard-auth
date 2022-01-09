@@ -11,7 +11,7 @@ var defaults map[string]string
 func init() {
 	defaults = map[string]string{
 		"ipv4_ip":            "10.0.0.1",
-		"ipv4_n":             "16",
+		"ipv4_n":             "32",
 		"db_user":            "root",
 		"db_pwd":             "123456",
 		"db_host":            "127.0.0.1:3305",
@@ -23,7 +23,7 @@ func init() {
 		"dhcp_default_ip":    "10.0.0.2",
 		"wg_private_key":     "",
 		"wg_public_key":      "",
-		"wg_address":         "10.0.0.1/16",
+		"wg_address":         "10.0.0.1/24",
 		"wg_listen_port":     "51820",
 		"wg_mtu":             "1420",
 		"wg_dns":             "8.8.8.8",

@@ -15,7 +15,7 @@ type Peer struct {
 	ListenPort string
 	DNS        string
 	// peer
-	ServerPublicKey string
+	ServerPublicKey string `xorm:"index"`
 	Endpoint        string
 	AllowedIPs      string `xorm:"allow_ips"`
 	// other
