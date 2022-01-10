@@ -9,6 +9,8 @@ github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuy
 github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf/go.mod h1:ybxpYRFXyAe+OPACYpWeL0wqObRcbAqCMya13uyzqw0=
 github.com/apache/thrift v0.12.0/go.mod h1:cp2SuWMxlEZw2r+iP2GNCdIi4C1qmUzdZFSVb+bacwQ=
 github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24TaqPxmxbtue+5NUziq4I4S80YR8gNf3Q=
+github.com/bugfan/de v0.0.0-20220110073858-ce7f0ae543a9 h1:uCQjRR+lb3LQYnNtbgKQOiigoHI9Rf5w1P8cUQIa45c=
+github.com/bugfan/de v0.0.0-20220110073858-ce7f0ae543a9/go.mod h1:LyEhdEYtuPWXE+wIb+06egNeFuLXiGSzE8N2OL7zS5w=
 github.com/bugfan/jsoniter v0.0.0-20191008095102-50a9185e85f5 h1:0vO0lr8JhoQ3Q+Tcf5Mk8+jr8RFzBfDCOqLq8B72T0M=
 github.com/bugfan/jsoniter v0.0.0-20191008095102-50a9185e85f5/go.mod h1:1Hh7vOMz/i1OUcJf3ZPgmMXxl00dWpTTcA2ZUxlE2aU=
 github.com/bugfan/logrus v1.0.6 h1:0KCw0VIGSu/XDyHU+yPG8C5IgQ4L3Zr3GnWD4mKsuTE=

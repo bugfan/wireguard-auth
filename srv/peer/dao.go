@@ -2,6 +2,7 @@ package peer
 
 import (
 	"encoding/hex"
+	"fmt"
 
 	"github.com/bugfan/wireguard-auth/models"
 )
@@ -34,4 +35,14 @@ func GetPeer(pubkey string) (*models.Peer, error) {
 		return nil, err
 	}
 	return p, nil
+}
+
+func GetSetting(key string) string {
+	set := new(models.Setting)
+	has, err := models.GetEngine().Where("key=?", key).Get(set)
+	if err != nil || !has {
+		fmt.Println("not found key ,error is:", err)
+		return ""
+	}
+	return set.Value
 }

@@ -19,7 +19,7 @@ func init() {
 
 func NewDHCP(group, ipv4 string, count int64, args ...string) *dhcp {
 	// cidr suffix
-	suffix := "16"
+	suffix := "32"
 	if len(args) > 0 {
 		suffix = args[0]
 	}

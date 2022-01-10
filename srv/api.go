@@ -1,30 +1,51 @@
 package srv
 
 import (
-	"encoding/hex"
+	"encoding/json"
 	"net/http"
 
+	"github.com/bugfan/de"
 	"github.com/bugfan/logrus"
 	"github.com/bugfan/srv"
+	"github.com/bugfan/wireguard-auth/env"
+	"github.com/bugfan/wireguard-auth/models"
 	"github.com/bugfan/wireguard-auth/srv/peer"
 	"github.com/bugfan/wireguard-auth/utils"
 )
+
+func init() {
+	de.SetKey(env.Get("des_key"))
+}
 
 type Auth struct {
 }
 
 func (*Auth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	/*
-		todo
 		api auth middleware
 	*/
+	// auth := r.Header.Get("WG_TOKEN")
+	// _, err := de.DecodeWithBase64([]byte(auth))
+	// if auth == "" || err != nil {
+	// 	fmt.Println("auth decode error:", err)
+	// 	w.WriteHeader(http.StatusForbidden)
+	// 	return
+	// }
 }
 
+type ServerConfig struct {
+	ListenPort string `json:"wg_listen_port"`
+	PrivateKey string `json:"wg_private_key"`
+}
 type Config struct {
 }
 
 func (s *Config) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
+	conf := &ServerConfig{}
+	conf.ListenPort = models.GetValue("wg_listen_port")
+	conf.PrivateKey = models.GetValue("wg_private_key")
+	data, _ := json.Marshal(conf)
+	w.Write(data)
 }
 
 type Wireguard struct {
@@ -44,12 +65,8 @@ func (s *Wireguard) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 func (*Wireguard) verifyAuth(w http.ResponseWriter, r *http.Request) {
 	// get
-	pubkey, err := hex.DecodeString(r.URL.Query().Get("publickey"))
-	if err != nil {
-		w.WriteHeader(http.StatusForbidden)
-		return
-	}
-	data, err := peer.GetPeer(string(pubkey))
+	pubkey := r.Header.Get("WG_KEY")
+	data, err := peer.GetPeer(pubkey)
 	if err != nil {
 		w.WriteHeader(http.StatusForbidden)
 		return

@@ -30,7 +30,8 @@ func init() {
 		"wg_psk":             "",
 		"wg_allow_ips":       "0.0.0.0/0,::0/0", // allow all ipv4 and ipv6 flow
 		"wg_keepalive":       "25",
-		"api_addr":           ":8080",
+		"api_addr":           ":8005",
+		"des_key":            "jwdlhzxy",
 	}
 }
 
