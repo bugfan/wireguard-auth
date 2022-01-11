@@ -1,9 +1,9 @@
 package peer
 
 import (
-	"github.com/bugfan/logrus"
 	"github.com/bugfan/wireguard-auth/srv/dhcp"
 	"github.com/bugfan/wireguard-auth/srv/key"
+	"github.com/sirupsen/logrus"
 )
 
 func NewClient(name string, g *General) *Client {

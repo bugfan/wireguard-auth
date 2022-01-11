@@ -23,7 +23,7 @@ func init() {
 		"dhcp_default_ip":    "10.0.0.2",
 		"wg_private_key":     "",
 		"wg_public_key":      "",
-		"wg_address":         "10.0.0.1/24",
+		"wg_address":         "10.0.0.1/8",
 		"wg_listen_port":     "51820",
 		"wg_mtu":             "1420",
 		"wg_dns":             "8.8.8.8",

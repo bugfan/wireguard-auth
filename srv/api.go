@@ -2,35 +2,32 @@ package srv
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 
 	"github.com/bugfan/de"
-	"github.com/bugfan/logrus"
 	"github.com/bugfan/srv"
 	"github.com/bugfan/wireguard-auth/env"
 	"github.com/bugfan/wireguard-auth/models"
 	"github.com/bugfan/wireguard-auth/srv/peer"
 	"github.com/bugfan/wireguard-auth/utils"
+	"github.com/sirupsen/logrus"
 )
 
 func init() {
 	de.SetKey(env.Get("des_key"))
 }
 
-type Auth struct {
-}
-
-func (*Auth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func VerifyAuth(w http.ResponseWriter, r *http.Request) error {
 	/*
 		api auth middleware
 	*/
-	// auth := r.Header.Get("WG_TOKEN")
-	// _, err := de.DecodeWithBase64([]byte(auth))
-	// if auth == "" || err != nil {
-	// 	fmt.Println("auth decode error:", err)
-	// 	w.WriteHeader(http.StatusForbidden)
-	// 	return
-	// }
+	auth := r.Header.Get("Wgtoken")
+	_, err := de.DecodeWithBase64([]byte(auth))
+	if auth == "" || err != nil {
+		return errors.New("auth decode error")
+	}
+	return nil
 }
 
 type ServerConfig struct {
@@ -42,6 +39,8 @@ type Config struct {
 
 func (s *Config) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	conf := &ServerConfig{}
+	serverIP := r.Header.Get("Wgserverip")
+	logrus.Infof("[server-init] server ip %s\n", serverIP)
 	conf.ListenPort = models.GetValue("wg_listen_port")
 	conf.PrivateKey = models.GetValue("wg_private_key")
 	data, _ := json.Marshal(conf)
@@ -52,6 +51,10 @@ type Wireguard struct {
 }
 
 func (s *Wireguard) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if err := VerifyAuth(w, r); err != nil {
+		w.WriteHeader(403)
+		return
+	}
 	switch r.Method {
 	case http.MethodGet:
 		s.verifyAuth(w, r)
@@ -65,7 +68,9 @@ func (s *Wireguard) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 func (*Wireguard) verifyAuth(w http.ResponseWriter, r *http.Request) {
 	// get
-	pubkey := r.Header.Get("WG_KEY")
+	pubkey := r.Header.Get("Wgkey")
+	serverIP := r.Header.Get("WgServerIp")
+	logrus.Infof("[authentication] server ip %s,client publick-key is %s\n", serverIP, pubkey)
 	data, err := peer.GetPeer(pubkey)
 	if err != nil {
 		w.WriteHeader(http.StatusForbidden)
@@ -91,7 +96,6 @@ func (*Wireguard) createPeer(w http.ResponseWriter, r *http.Request) {
 func NewServer(addr string) *Server {
 
 	s := srv.New(addr)
-	s.AddHeadHandler(&Auth{})            // set auth middleware
 	s.Handle("/wireguard", &Wireguard{}) // set wg handler
 	s.Handle("/config", &Config{})
 	return &Server{

@@ -13,8 +13,6 @@ github.com/bugfan/de v0.0.0-20220110073858-ce7f0ae543a9 h1:uCQjRR+lb3LQYnNtbgKQO
 github.com/bugfan/de v0.0.0-20220110073858-ce7f0ae543a9/go.mod h1:LyEhdEYtuPWXE+wIb+06egNeFuLXiGSzE8N2OL7zS5w=
 github.com/bugfan/jsoniter v0.0.0-20191008095102-50a9185e85f5 h1:0vO0lr8JhoQ3Q+Tcf5Mk8+jr8RFzBfDCOqLq8B72T0M=
 github.com/bugfan/jsoniter v0.0.0-20191008095102-50a9185e85f5/go.mod h1:1Hh7vOMz/i1OUcJf3ZPgmMXxl00dWpTTcA2ZUxlE2aU=
-github.com/bugfan/logrus v1.0.6 h1:0KCw0VIGSu/XDyHU+yPG8C5IgQ4L3Zr3GnWD4mKsuTE=
-github.com/bugfan/logrus v1.0.6/go.mod h1:C/JxmIHF3y1xhGdJZJTdlTCXBbs7yzfuL4xPvcQM7Dk=
 github.com/bugfan/srv v0.0.0-20210409074843-d2eeed3b0f76 h1:CwAjfLIkHZg3yiN7oCxtu5s0dSu1+pqZOYJYUuse8fY=
 github.com/bugfan/srv v0.0.0-20210409074843-d2eeed3b0f76/go.mod h1:MTw+oA0m/0fayP3Bm9bgDdcBIPsJtAEUKOlgPNiO3IQ=
 github.com/bugfan/to v0.0.0-20191009012259-9ef08661c883 h1:YmIO23AQOR/4eQmjW3vl3qqBBvDOIccJDb17ylQAS78=

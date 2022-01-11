@@ -5,8 +5,8 @@ replace github.com/go-xorm/core => xorm.io/core v0.6.2
 go 1.17
 
 require (
+	github.com/bugfan/de v0.0.0-20220110073858-ce7f0ae543a9
 	github.com/bugfan/jsoniter v0.0.0-20191008095102-50a9185e85f5
-	github.com/bugfan/logrus v1.0.6
 	github.com/bugfan/srv v0.0.0-20210409074843-d2eeed3b0f76
 	github.com/bugfan/to v0.0.0-20191009012259-9ef08661c883
 	github.com/go-sql-driver/mysql v1.6.0
@@ -20,7 +20,6 @@ require (
 )
 
 require (
-	github.com/bugfan/de v0.0.0-20220110073858-ce7f0ae543a9 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	golang.org/x/sys v0.0.0-20191026070338-33540a1f6037 // indirect
