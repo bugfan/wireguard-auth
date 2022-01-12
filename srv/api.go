@@ -3,6 +3,7 @@ package srv
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/bugfan/de"
@@ -23,6 +24,7 @@ func VerifyAuth(w http.ResponseWriter, r *http.Request) error {
 		api auth middleware
 	*/
 	auth := r.Header.Get("Wgtoken")
+	fmt.Println("auth is:", auth)
 	_, err := de.DecodeWithBase64([]byte(auth))
 	if auth == "" || err != nil {
 		return errors.New("auth decode error")
