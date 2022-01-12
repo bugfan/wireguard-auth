@@ -1,0 +1,16 @@
+version: '2'
+services:
+  wireguard-auth:
+    #build: ./
+    image: bugfan/wireguard-auth
+    restart: always
+    environment:
+      - WG_SECRET=abcd1234  # 8 bytes
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "100m"
+    volumes:
+      - ./config:/opt/config
+    ports:
+      - "5000:8005"
