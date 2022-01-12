@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine AS build-env
+FROM golang:1.16 AS build-env
 MAINTAINER sean bugfan "908958194@qq.com"
 ADD . /wireguard-auth
 WORKDIR /wireguard-auth
