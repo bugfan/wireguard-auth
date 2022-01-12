@@ -5,7 +5,8 @@ services:
     image: bugfan/wireguard-auth
     restart: always
     environment:
-      - WG_SECRET=abcd1234  # 8 bytes
+      - DES_KEY=12345678  # 8 bytes
+      - DB_HOST=10.128.0.3:3305
     logging: 
       driver: "json-file"
       options: 
@@ -14,6 +15,8 @@ services:
     #   - ./config:/opt/config
     ports:
       - "5000:8005"
+
+
   mysql:
     image: mysql/mysql-server:5.6
     # restart: always
@@ -27,8 +30,6 @@ services:
     container_name: docker-mysql-auth
     ports:
     - 3305:3306
-    networks:
-      default:
     volumes:
       -  ./data:/var/lib/mysql
       - ./mysql/config/init:/docker-entrypoint-initdb.d/
