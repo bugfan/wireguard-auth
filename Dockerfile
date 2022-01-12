@@ -5,9 +5,6 @@ WORKDIR /wireguard-auth
 RUN go build -o wireguard-auth main.go
 
 FROM ubuntu:20.04
-RUN apk add --update --no-cache
-RUN apk  add --update vim && \
-    apk  add --update nano
     
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 COPY --from=build-env /wireguard-auth/wireguard-auth /wireguard-auth
