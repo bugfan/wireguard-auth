@@ -4,7 +4,7 @@ ADD . /wireguard-auth
 WORKDIR /wireguard-auth
 RUN go build -o wireguard-auth main.go
 
-FROM alpine:3.13
+FROM ubuntu:20.04
 RUN apk add --update --no-cache
 RUN apk  add --update vim && \
     apk  add --update nano
