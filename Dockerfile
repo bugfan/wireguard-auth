@@ -2,7 +2,7 @@ FROM golang:1.16-alpine AS build-env
 MAINTAINER sean bugfan "908958194@qq.com"
 ADD . /wireguard-auth
 WORKDIR /wireguard-auth
-RUN go build -o wireguard-auth
+RUN go build -o wireguard-auth main.go
 
 FROM alpine:3.13
 RUN apk add --update --no-cache
