@@ -17,7 +17,7 @@ func init() {
 		"db_host":            "127.0.0.1:3305",
 		"db_name":            "auth",
 		"db_scheme":          "mysql",
-		"db_show_sql":        "true",
+		"db_show_sql":        "false",
 		"dhcp_default_group": "dhcp0",
 		"dhcp_default_num":   "60000",
 		"dhcp_default_ip":    "10.0.0.2",

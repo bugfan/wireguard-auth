@@ -75,6 +75,7 @@ func SetEngine(config *Config, args ...string) (*xorm.Engine, error) {
 	}
 	if err = x.StoreEngine("InnoDB").Sync2(tables...); err != nil {
 		fmt.Printf("sync database struct error: %v\n", err)
+		return nil, err
 	}
 	initData()
 	return x, nil
