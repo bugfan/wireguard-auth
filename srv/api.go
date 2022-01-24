@@ -71,6 +71,7 @@ func (s *Wireguard) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (*Wireguard) verifyAuth(w http.ResponseWriter, r *http.Request) {
 	// get
 	pubkey := r.Header.Get("Wgkey")
+	fmt.Println("custom key is:", pubkey)
 	serverIP := r.Header.Get("WgServerIp")
 	logrus.Infof("[authentication] server ip %s,client publick-key is %s\n", serverIP, pubkey)
 	data, err := peer.GetPeer(pubkey)
